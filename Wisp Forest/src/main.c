@@ -8,28 +8,23 @@
 
 #define CAMERA_SPEED 1.0
 
-int mouse_x, mouse_y;
-int needhelp = 0;
-float _angle=0.0;
-GLfloat light_color[] = {0.0f, 0.0f, 1.0f, 1.0f};
-GLfloat light_ambient[] = { 0.1f, 0.1f, 0.3f, 1.0f };
-GLfloat light_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-GLfloat mat_emission[] = {-1.0f,-1.0f,-1.0f,1.0f};
-GLfloat sky_emission[] = {0.0f,0.0f,0.4f,1.0f};
-GLfloat ground_emission[] = {-0.7f,-0.7f,-0.7f,1.0f};
-GLfloat light_position[] = {0.0f, 0.0f, 20.0f, 1.0f};
-GLuint texture_id;
-GLuint groundtexture_id;
-GLuint skytexture_id;
-GLuint help_texture_id;
+static int mouse_x, mouse_y;
+static int needhelp = 0;
+static float _angle=0.0;
+static GLfloat mat_emission[] = {-1.0f,-1.0f,-1.0f,1.0f};
+static GLfloat sky_emission[] = {0.0f,0.0f,0.4f,1.0f};
+static GLfloat ground_emission[] = {-0.7f,-0.7f,-0.7f,1.0f};
+static GLuint texture_id;
+static GLuint groundtexture_id;
+static GLuint skytexture_id;
+static GLuint help_texture_id;
 struct Camera camera;
-struct Model tree1;
-struct Model tree2;
-struct Model tree3;
-struct Model tree4;
-struct Model etriangle;
-struct Model ground;
+static struct Model tree1;
+static struct Model tree2;
+static struct Model tree3;
+static struct Model tree4;
+static struct Model etriangle;
+static struct Model ground;
 
 typedef GLubyte Pixel[3];
 struct Action
@@ -49,8 +44,8 @@ void mouse_handler(int button, int state, int x, int y);
 void motion_handler(int x, int y);
 void key_handler_help(int key, int x, int y);
 void idle();
-struct Action action;
-int time;
+static struct Action action;
+static int time;
 
 
 GLuint load_texture(char* filename)
@@ -175,6 +170,11 @@ void helpdisplay(){
 void display()
 {
     double elapsed_time;
+    GLfloat light_color[] = {0.0f, 0.0f, 1.0f, 1.0f};
+    GLfloat light_ambient[] = { 0.1f, 0.1f, 0.3f, 1.0f };
+    GLfloat light_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    GLfloat light_position[] = {0.0f, 0.0f, 20.0f, 1.0f};
 
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT,light_ambient);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
@@ -449,10 +449,10 @@ void initialize()
 	glMatrixMode(GL_MODELVIEW);
 
     glShadeModel(GL_SMOOTH);
-    texture_id = load_texture("colors.png");
-    groundtexture_id = load_texture("grass_text.jpg");
-    skytexture_id = load_texture("Skydome.png");
-    help_texture_id = load_texture("help_texture.jpg");
+    texture_id = load_texture("textures/colors.png");
+    groundtexture_id = load_texture("textures/grass_text.jpg");
+    skytexture_id = load_texture("textures/Skydome.png");
+    help_texture_id = load_texture("textures/help_texture.jpg");
 
     int i;
 
@@ -491,12 +491,12 @@ void initialize()
 
 int main(int argc, char* argv[])
 {
-    load_model(&ground, "ground.obj");
-    load_model(&tree1, "tree.obj");
-    load_model(&tree2, "tree.obj");
-    load_model(&tree3, "tree.obj");
-    load_model(&tree4, "tree.obj");
-    load_model(&etriangle, "cucc.obj");
+    load_model(&ground, "models/ground.obj");
+    load_model(&tree1, "models/tree.obj");
+    load_model(&tree2, "models/tree.obj");
+    load_model(&tree3, "models/tree.obj");
+    load_model(&tree4, "models/tree.obj");
+    load_model(&etriangle, "models/cucc.obj");
     glutInit(&argc, argv);
 
 	glutInitWindowSize(1920, 1080);

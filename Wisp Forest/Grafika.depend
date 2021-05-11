@@ -524,10 +524,14 @@
 
 1526603607 g:\documents\grafika\mm_grafikabeadandó2021\wisp forest\include\utils.h
 
-1620324671 source:g:\documents\grafika\mm_grafikabeadandó2021\wisp forest\src\main.c
+1620751128 source:g:\documents\grafika\mm_grafikabeadandó2021\wisp forest\src\main.c
 	"../include/camera.h"
 	<GL/glut.h>
 	<stdio.h>
 	<SOIL/SOIL.h>
+	<math.h>
+
+1620324675 source:g:\documents\grafika\mm_grafikabeadandó2021\wisp forest\src\utils.c
+	"../include/utils.h"
 	<math.h>
 
